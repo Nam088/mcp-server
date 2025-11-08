@@ -7,8 +7,8 @@
         "@nam088/mcp-mongodb"
       ],
       "env": {
-        "MONGODB_URI": "mongodb://localhost:27017",
-        "MONGODB_DATABASE": "test",
+        "MONGODB_URI": "mongodb://admin:admin@localhost:27017/idlogiq?authMechanism=SCRAM-SHA-256&directConnection=true",
+        "MONGODB_DATABASE": "idlogiq",
         "MONGODB_MODE": "READONLY"
       }
     }
