@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "mongodb": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@nam088/mcp-mongodb"
+      ],
+      "env": {
+        "MONGODB_URI": "mongodb://localhost:27017",
+        "MONGODB_DATABASE": "test",
+        "MONGODB_MODE": "READONLY"
+      }
+    }
+  }
+}
+

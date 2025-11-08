@@ -1,0 +1,58 @@
+{
+  "name": "@nam088/mcp-server",
+  "version": "0.1.0",
+  "description": "A professional MCP (Model Context Protocol) server implementation",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "clean": "npm run clean --workspaces",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write \"packages/*/src/**/*.ts\"",
+    "format:check": "prettier --check \"packages/*/src/**/*.ts\"",
+    "type-check": "npm run type-check --workspaces",
+    "prepare": "husky",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ai",
+    "llm"
+  ],
+  "author": "nam088",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.21.1",
+    "@nam088/mcp-core": "file:./packages/core",
+    "@nam088/mcp-redis": "file:./packages/redis",
+    "@nam088/mcp-postgres": "file:./packages/postgres"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@types/node": "^24.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
+    "@typescript-eslint/parser": "^8.46.3",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3"
+  }
+}

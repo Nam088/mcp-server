@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-postgres"],
+      "env": {
+        "POSTGRES_HOST": "localhost",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASSWORD": "your_password",
+        "POSTGRES_DB": "your_database",
+        "POSTGRES_MODE": "READONLY"
+      }
+    }
+  }
+}
+

@@ -1,0 +1,40 @@
+{
+  "name": "@nam088/mcp-core",
+  "version": "0.2.9",
+  "description": "Core plugin system for MCP server",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "plugin",
+    "core"
+  ],
+  "author": "nam088",
+  "license": "MIT",
+  "peerDependencies": {
+    "@modelcontextprotocol/sdk": "^1.21.1"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.21.1",
+    "@types/node": "^24.10.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "picocolors": "^1.1.1"
+  }
+}

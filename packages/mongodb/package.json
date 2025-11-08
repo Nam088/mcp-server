@@ -1,0 +1,46 @@
+{
+  "name": "@nam088/mcp-mongodb",
+  "version": "0.1.0",
+  "description": "MongoDB plugin for MCP server",
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "bin": {
+    "mcp-mongodb": "dist/bin/server.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "plugin",
+    "mongodb",
+    "mongo",
+    "nosql",
+    "database"
+  ],
+  "author": "nam088",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.21.1",
+    "@nam088/mcp-core": "^0.2.9",
+    "mongodb": "^6.11.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "typescript": "^5.9.3"
+  }
+}
+

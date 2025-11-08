@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "mysql": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-mysql"],
+      "env": {
+        "MYSQL_HOST": "localhost",
+        "MYSQL_PORT": "3306",
+        "MYSQL_USER": "root",
+        "MYSQL_PASSWORD": "your_password",
+        "MYSQL_DATABASE": "testdb",
+        "MYSQL_MODE": "FULL",
+        "MYSQL_POOL_SIZE": "10",
+        "MYSQL_TIMEOUT": "10000"
+      }
+    }
+  }
+}
+

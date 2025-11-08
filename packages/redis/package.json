@@ -1,0 +1,41 @@
+{
+  "name": "@nam088/mcp-redis",
+  "version": "0.2.10",
+  "description": "Redis plugin for MCP server",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "mcp-redis": "./dist/bin/server.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "plugin",
+    "redis"
+  ],
+  "author": "nam088",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.21.1",
+    "@nam088/mcp-core": "^0.2.9",
+    "redis": "^4.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "typescript": "^5.9.3"
+  }
+}

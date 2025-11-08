@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "sql-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@nam088/mcp-sql-server"
+      ],
+      "env": {
+        "MSSQL_HOST": "localhost",
+        "MSSQL_PORT": "1433",
+        "MSSQL_USER": "sa",
+        "MSSQL_PASSWORD": "YourStrong@Password123",
+        "MSSQL_DATABASE": "master",
+        "MSSQL_MODE": "READONLY"
+      }
+    }
+  }
+}
+
