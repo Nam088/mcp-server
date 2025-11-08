@@ -85,6 +85,63 @@ Create `mcp-config.json`:
 }
 ```
 
+### Complete Configuration Examples
+
+**Using Connection String (Recommended):**
+
+```json
+{
+  "mcpServers": {
+    "mongodb": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-mongodb"],
+      "env": {
+        "MONGODB_URI": "mongodb://username:password@localhost:27017/database_name?authMechanism=SCRAM-SHA-256",
+        "MONGODB_MODE": "READONLY"
+      }
+    }
+  }
+}
+```
+
+**MongoDB Atlas (Cloud) with Connection String:**
+
+```json
+{
+  "mcpServers": {
+    "mongodb": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-mongodb"],
+      "env": {
+        "MONGODB_URI": "mongodb+srv://username:password@cluster.mongodb.net/database_name?retryWrites=true&w=majority",
+        "MONGODB_MODE": "READONLY"
+      }
+    }
+  }
+}
+```
+
+**Using Individual Environment Variables (Alternative):**
+
+```json
+{
+  "mcpServers": {
+    "mongodb": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-mongodb"],
+      "env": {
+        "MONGODB_HOST": "localhost",
+        "MONGODB_PORT": "27017",
+        "MONGODB_USER": "username",
+        "MONGODB_PASSWORD": "your_password",
+        "MONGODB_DATABASE": "your_database",
+        "MONGODB_MODE": "READONLY"
+      }
+    }
+  }
+}
+```
+
 ### As Plugin in Your MCP Server
 
 ```typescript

@@ -40,7 +40,7 @@ npm run clean
 Install the packages you need in your project:
 
 ```bash
-npm install @nam088/mcp-core @nam088/mcp-mysql @nam088/mcp-mongodb
+npm install @nam088/mcp-core @nam088/mcp-mysql @nam088/mcp-sql-server @nam088/mcp-mongodb @nam088/mcp-postgres @nam088/mcp-redis
 ```
 
 Create your MCP server:
@@ -50,7 +50,10 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { PluginRegistry } from '@nam088/mcp-core';
 import { MysqlPlugin } from '@nam088/mcp-mysql';
+import { SqlServerPlugin } from '@nam088/mcp-sql-server';
 import { MongoDBPlugin } from '@nam088/mcp-mongodb';
+import { PostgresPlugin } from '@nam088/mcp-postgres';
+import { RedisPlugin } from '@nam088/mcp-redis';
 
 const server = new Server(
   { name: 'my-mcp-server', version: '1.0.0' },
@@ -59,7 +62,22 @@ const server = new Server(
 
 const registry = new PluginRegistry(server);
 
-// Register plugins
+// Register plugins with connection strings (recommended)
+await registry.registerPlugin(MongoDBPlugin, {
+  uri: process.env.MONGODB_URI || 'mongodb://localhost:27017',
+  mode: 'READONLY',
+});
+
+await registry.registerPlugin(PostgresPlugin, {
+  url: process.env.POSTGRES_URL || 'postgresql://postgres:password@localhost:5432/mydb',
+  mode: 'READONLY',
+});
+
+await registry.registerPlugin(RedisPlugin, {
+  url: process.env.REDIS_URL || 'redis://localhost:6379',
+});
+
+// MySQL (using individual config - connection string not yet supported)
 await registry.registerPlugin(MysqlPlugin, {
   host: process.env.MYSQL_HOST || 'localhost',
   port: parseInt(process.env.MYSQL_PORT || '3306'),
@@ -69,15 +87,141 @@ await registry.registerPlugin(MysqlPlugin, {
   mode: 'READONLY',
 });
 
-await registry.registerPlugin(MongoDBPlugin, {
-  uri: process.env.MONGODB_URI || 'mongodb://localhost:27017',
-  database: process.env.MONGODB_DATABASE || 'test',
+// SQL Server (using individual config)
+await registry.registerPlugin(SqlServerPlugin, {
+  server: process.env.MSSQL_HOST || 'localhost',
+  port: parseInt(process.env.MSSQL_PORT || '1433'),
+  user: process.env.MSSQL_USER || 'sa',
+  password: process.env.MSSQL_PASSWORD,
+  database: process.env.MSSQL_DATABASE,
   mode: 'READONLY',
 });
 
 // Start server
 const transport = new StdioServerTransport();
 await server.connect(transport);
+```
+
+## Configuration Examples
+
+### MCP Server Configuration (for Cursor/Claude Desktop)
+
+Add to your `~/.cursor/mcp.json` or Claude Desktop config:
+
+```json
+{
+  "mcpServers": {
+    "mongodb": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-mongodb"],
+      "env": {
+        "MONGODB_URI": "mongodb://admin:admin@localhost:27017/db_name?authMechanism=SCRAM-SHA-256",
+        "MONGODB_DATABASE": "mydb",
+        "MONGODB_MODE": "READONLY"
+      }
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-postgres"],
+      "env": {
+        "POSTGRES_URL": "postgresql://postgres:password@localhost:5432/mydb",
+        "POSTGRES_MODE": "READONLY"
+      }
+    },
+    "redis": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-redis"],
+      "env": {
+        "REDIS_URL": "redis://localhost:6379"
+      }
+    },
+    "mysql": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-mysql"],
+      "env": {
+        "MYSQL_HOST": "localhost",
+        "MYSQL_PORT": "3306",
+        "MYSQL_USER": "root",
+        "MYSQL_PASSWORD": "your_password",
+        "MYSQL_DATABASE": "mydb",
+        "MYSQL_MODE": "READONLY"
+      }
+    },
+    "sql-server": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-sql-server"],
+      "env": {
+        "MSSQL_HOST": "localhost",
+        "MSSQL_PORT": "1433",
+        "MSSQL_USER": "sa",
+        "MSSQL_PASSWORD": "your_password",
+        "MSSQL_DATABASE": "mydb",
+        "MSSQL_MODE": "READONLY"
+      }
+    }
+  }
+}
+```
+
+### Plugin Configuration (for Dynamic Loading)
+
+Create a `plugins.config.json` file for dynamic plugin loading:
+
+```json
+[
+  {
+    "package": "@nam088/mcp-mongodb",
+    "export": "MongoDBPlugin",
+    "enabled": true,
+    "config": {
+      "uri": "mongodb://admin:admin@localhost:27017/db_name",
+      "mode": "READONLY"
+    }
+  },
+  {
+    "package": "@nam088/mcp-postgres",
+    "export": "PostgresPlugin",
+    "enabled": true,
+    "config": {
+      "url": "postgresql://postgres:password@localhost:5432/mydb",
+      "mode": "READONLY"
+    }
+  },
+  {
+    "package": "@nam088/mcp-redis",
+    "export": "RedisPlugin",
+    "enabled": true,
+    "config": {
+      "url": "redis://localhost:6379"
+    }
+  },
+  {
+    "package": "@nam088/mcp-mysql",
+    "export": "MysqlPlugin",
+    "enabled": true,
+    "config": {
+      "host": "localhost",
+      "port": 3306,
+      "user": "root",
+      "password": "your_password",
+      "database": "mydb",
+      "mode": "READONLY"
+    }
+  },
+  {
+    "package": "@nam088/mcp-sql-server",
+    "export": "SqlServerPlugin",
+    "enabled": true,
+    "config": {
+      "server": "localhost",
+      "port": 1433,
+      "user": "sa",
+      "password": "your_password",
+      "database": "mydb",
+      "mode": "READONLY"
+    }
+  }
+]
 ```
 
 ## Available Plugins

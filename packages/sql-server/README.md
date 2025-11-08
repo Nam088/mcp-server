@@ -90,6 +90,87 @@ Create `mcp-config.json`:
 }
 ```
 
+### Complete Configuration Examples
+
+**Basic Configuration:**
+
+```json
+{
+  "mcpServers": {
+    "sql-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@nam088/mcp-sql-server"
+      ],
+      "env": {
+        "MSSQL_HOST": "localhost",
+        "MSSQL_PORT": "1433",
+        "MSSQL_USER": "sa",
+        "MSSQL_PASSWORD": "your_password",
+        "MSSQL_DATABASE": "your_database",
+        "MSSQL_MODE": "READONLY"
+      }
+    }
+  }
+}
+```
+
+**With Connection Pool Settings:**
+
+```json
+{
+  "mcpServers": {
+    "sql-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@nam088/mcp-sql-server"
+      ],
+      "env": {
+        "MSSQL_HOST": "sqlserver.example.com",
+        "MSSQL_PORT": "1433",
+        "MSSQL_USER": "db_user",
+        "MSSQL_PASSWORD": "your_password",
+        "MSSQL_DATABASE": "production_db",
+        "MSSQL_MODE": "FULL",
+        "MSSQL_POOL_MAX": "10",
+        "MSSQL_POOL_MIN": "0",
+        "MSSQL_IDLE_TIMEOUT": "30000",
+        "MSSQL_CONNECTION_TIMEOUT": "15000",
+        "MSSQL_REQUEST_TIMEOUT": "15000"
+      }
+    }
+  }
+}
+```
+
+**Azure SQL Database Configuration:**
+
+```json
+{
+  "mcpServers": {
+    "sql-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@nam088/mcp-sql-server"
+      ],
+      "env": {
+        "MSSQL_HOST": "your-server.database.windows.net",
+        "MSSQL_PORT": "1433",
+        "MSSQL_USER": "admin_user",
+        "MSSQL_PASSWORD": "your_password",
+        "MSSQL_DATABASE": "azure_database",
+        "MSSQL_MODE": "READONLY",
+        "MSSQL_POOL_MAX": "20",
+        "MSSQL_CONNECTION_TIMEOUT": "30000"
+      }
+    }
+  }
+}
+```
+
 ### As Plugin in Your MCP Server
 
 ```typescript

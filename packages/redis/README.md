@@ -63,6 +63,66 @@ Then configure via JSON (Claude Desktop) or environment variables:
 }
 ```
 
+### Complete Configuration Examples
+
+**Using Connection String (Recommended):**
+
+```json
+{
+  "mcpServers": {
+    "redis": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-redis"],
+      "env": {
+        "REDIS_URL": "redis://:your_password@localhost:6379/0",
+        "REDIS_MODE": "READONLY"
+      }
+    }
+  }
+}
+```
+
+**With TLS/SSL in Connection String:**
+
+```json
+{
+  "mcpServers": {
+    "redis": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-redis"],
+      "env": {
+        "REDIS_URL": "rediss://:your_password@redis.example.com:6380/0",
+        "REDIS_MODE": "READONLY",
+        "REDIS_REJECT_UNAUTHORIZED": "true"
+      }
+    }
+  }
+}
+```
+
+**Using Individual Environment Variables (Alternative):**
+
+```json
+{
+  "mcpServers": {
+    "redis": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-redis"],
+      "env": {
+        "REDIS_HOST": "localhost",
+        "REDIS_PORT": "6379",
+        "REDIS_PASSWORD": "your_password",
+        "REDIS_DB": "0",
+        "REDIS_MODE": "READONLY",
+        "REDIS_TIMEOUT": "5000",
+        "REDIS_COMMAND_TIMEOUT": "5000",
+        "REDIS_MAX_RETRIES": "3"
+      }
+    }
+  }
+}
+```
+
 ### Advanced: Override with Config Object
 
 You can also pass config directly in code (this overrides environment variables):

@@ -44,6 +44,75 @@ Create a configuration file or use environment variables:
 }
 ```
 
+### Complete Configuration Examples
+
+**Basic Configuration:**
+
+```json
+{
+  "mcpServers": {
+    "mysql": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-mysql"],
+      "env": {
+        "MYSQL_HOST": "localhost",
+        "MYSQL_PORT": "3306",
+        "MYSQL_USER": "root",
+        "MYSQL_PASSWORD": "your_password",
+        "MYSQL_DATABASE": "your_database",
+        "MYSQL_MODE": "FULL"
+      }
+    }
+  }
+}
+```
+
+**With Connection Pool Settings:**
+
+```json
+{
+  "mcpServers": {
+    "mysql": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-mysql"],
+      "env": {
+        "MYSQL_HOST": "db.example.com",
+        "MYSQL_PORT": "3306",
+        "MYSQL_USER": "db_user",
+        "MYSQL_PASSWORD": "your_password",
+        "MYSQL_DATABASE": "production_db",
+        "MYSQL_MODE": "READONLY",
+        "MYSQL_POOL_SIZE": "10",
+        "MYSQL_TIMEOUT": "10000"
+      }
+    }
+  }
+}
+```
+
+**MariaDB Configuration:**
+
+```json
+{
+  "mcpServers": {
+    "mysql": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-mysql"],
+      "env": {
+        "MYSQL_HOST": "mariadb.example.com",
+        "MYSQL_PORT": "3306",
+        "MYSQL_USER": "mariadb_user",
+        "MYSQL_PASSWORD": "your_password",
+        "MYSQL_DATABASE": "mariadb_database",
+        "MYSQL_MODE": "FULL",
+        "MYSQL_POOL_SIZE": "15",
+        "MYSQL_TIMEOUT": "15000"
+      }
+    }
+  }
+}
+```
+
 ### As a Plugin in Your MCP Server
 
 ```typescript

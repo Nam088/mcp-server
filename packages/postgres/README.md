@@ -45,6 +45,70 @@ Add to your MCP client configuration file:
 }
 ```
 
+### Complete Configuration Examples
+
+**Using Connection String (Recommended):**
+
+```json
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-postgres"],
+      "env": {
+        "POSTGRES_URL": "postgresql://username:password@localhost:5432/database_name",
+        "POSTGRES_MODE": "FULL",
+        "POSTGRES_SSL": "true",
+        "POSTGRES_MAX_POOL": "10",
+        "POSTGRES_TIMEOUT": "5000"
+      }
+    }
+  }
+}
+```
+
+**With SSL in Connection String:**
+
+```json
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-postgres"],
+      "env": {
+        "POSTGRES_URL": "postgresql://username:password@your-db-host.com:5432/production_db?sslmode=require",
+        "POSTGRES_MODE": "READONLY",
+        "POSTGRES_MAX_POOL": "20",
+        "POSTGRES_STATEMENT_TIMEOUT": "30000"
+      }
+    }
+  }
+}
+```
+
+**Using Individual Environment Variables (Alternative):**
+
+```json
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@nam088/mcp-postgres"],
+      "env": {
+        "POSTGRES_HOST": "localhost",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASSWORD": "your_password",
+        "POSTGRES_DB": "your_database",
+        "POSTGRES_MODE": "READONLY",
+        "POSTGRES_SSL": "true",
+        "POSTGRES_MAX_POOL": "10"
+      }
+    }
+  }
+}
+```
+
 **Config file locations:**
 - **Claude Desktop (macOS):** `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Claude Desktop (Windows):** `%APPDATA%\Claude\claude_desktop_config.json`
