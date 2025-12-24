@@ -33,7 +33,8 @@
     "@modelcontextprotocol/sdk": "^1.21.1",
     "@nam088/mcp-core": "file:./packages/core",
     "@nam088/mcp-redis": "file:./packages/redis",
-    "@nam088/mcp-postgres": "file:./packages/postgres"
+    "@nam088/mcp-postgres": "file:./packages/postgres",
+    "@nam088/mcp-swagger-parser": "file:./packages/swagger-parser"
   },
   "lint-staged": {
     "*.ts": [

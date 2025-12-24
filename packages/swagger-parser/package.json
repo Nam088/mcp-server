@@ -1,0 +1,53 @@
+{
+  "name": "@nam088/mcp-swagger-parser",
+  "version": "3.0.0",
+  "description": "Enhanced OpenAPI/Swagger MCP plugin with 12 tools, YAML support, and auto-resolved schemas",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "mcp-swagger-parser": "./bin/server.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mcp",
+    "swagger",
+    "openapi",
+    "api",
+    "mcp-server",
+    "model-context-protocol",
+    "yaml",
+    "rest-api"
+  ],
+  "author": "Nam088",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nam088/mcp-server.git",
+    "directory": "packages/swagger-parser"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "js-yaml": "^4.1.1",
+    "@nam088/mcp-core": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "zod": "^3.24.1"
+  },
+  "peerDependencies": {
+    "@nam088/mcp-core": "^1.0.0",
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

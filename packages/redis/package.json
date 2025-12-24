@@ -6,7 +6,8 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "mcp-redis": "./dist/bin/server.js"
+    "mcp-redis": "./dist/bin/server.js",
+    "mcp-redis-http": "./dist/bin/server-http.js"
   },
   "exports": {
     ".": {
