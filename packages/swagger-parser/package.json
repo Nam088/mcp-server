@@ -1,11 +1,11 @@
 {
   "name": "@nam088/mcp-swagger-parser",
-  "version": "3.0.0",
+  "version": "3.0.4",
   "description": "Enhanced OpenAPI/Swagger MCP plugin with 12 tools, YAML support, and auto-resolved schemas",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "mcp-swagger-parser": "./bin/server.js"
+    "mcp-swagger-parser": "./dist/bin/server.js"
   },
   "scripts": {
     "build": "tsc",
@@ -35,19 +35,16 @@
     "bin",
     "README.md"
   ],
-  "devDependencies": {
-    "@types/js-yaml": "^4.0.9",
-    "@types/node": "^20.0.0"
-  },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.21.1",
+    "@nam088/mcp-core": "^0.2.9",
     "axios": "^1.13.2",
     "js-yaml": "^4.1.1",
-    "@nam088/mcp-core": "workspace:*",
-    "@modelcontextprotocol/sdk": "^1.0.4",
-    "zod": "^3.24.1"
+    "zod": "^3.23.8"
   },
-  "peerDependencies": {
-    "@nam088/mcp-core": "^1.0.0",
-    "@modelcontextprotocol/sdk": "^1.0.0"
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^24.10.0",
+    "typescript": "^5.9.3"
   }
 }
